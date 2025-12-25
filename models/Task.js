@@ -8,6 +8,7 @@ const TaskSchema = new mongoose.Schema({
     enum: ['Low', 'Medium', 'High'],
     default: 'Medium'
   },
+  deadline: { type: Date },
   isCompleted: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 });
