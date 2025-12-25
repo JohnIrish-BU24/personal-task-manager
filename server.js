@@ -1,22 +1,24 @@
-// 1. Import the tools we installed
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 
-// 2. Create the "App" (The actual server object)
 const app = express();
 
-// 3. specific settings (Middleware)
-app.use(express.json()); // Allows the server to understand JSON data (like text sent from a form)
-app.use(cors()); // Allows your frontend to talk to this backend
+// Middleware
+app.use(express.json());
+app.use(cors());
 
-// 4. Create a "Test Route"
+// Database Connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB Connected!'))
+  .catch(err => console.log('DB Error:', err));
+
+// Routes
 app.get('/', (req, res) => {
-  res.send('API is running! Great job.');
+  res.send('API is running...');
 });
 
-// 5. Turn on the server
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server is successfully running on port ${PORT}`);
-});
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
