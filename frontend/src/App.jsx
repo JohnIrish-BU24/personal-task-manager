@@ -20,7 +20,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPriority, setFilterPriority] = useState('All');
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL || "https://personal-task-manager-j7gm.onrender.com";
 
   // 1. LOGIN HANDLER
   const handleLogin = (newToken, newUsername) => {
